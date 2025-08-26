@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  prh-service:
+    build:
+      context: ./prh-service # Specifies where to find the Dockerfile for prh-service
+      dockerfile: Dockerfile # Name of the Dockerfile in prh-service folder
+    container_name: prh_service_backend
+    restart: always
+    ports:
+      - "8888:8443"
+      # - "8443:8443" # You might not need to expose 8443 to the host directly if Nginx handles HTTPS
+    environment:
+      PRH_API_BASE_URL: https://avoindata.prh.fi/opendata-ytj-api/v3
+      JAVA_OPTS: "-Xms256m -Xmx512m"
+      # If your backend relies on the frontend's Nginx for a specific path,
+      # ensure it knows its own internal URL or external URL if necessary.
+    volumes:
+      - ./prh-service/keystore.p12:/app/keystore.p12 # Ensure path is correct relative to docker-compose.yml
+      # For development, we might mount your source code for hot-reloading:
+      # - ./prh-service/src:/app/src
+      # - ./prh-service/target:/app/target
+    networks:
+      - prh-app-network
+
+  web:
+    build:
+      context: ./web # Specifies where to find the Dockerfile for web (React app)
+      dockerfile: Dockerfile # Name of the Dockerfile in web folder
+    container_name: react_frontend
+    restart: always
+    ports:
+      - "80:80"   
+      - "443:443" # If you configure Nginx for HTTPS in the future
+    depends_on:
+      - prh-service # Ensures backend starts before frontend
+    networks:
+      - prh-app-network
+
+networks:
+  prh-app-network:
+    driver: bridge
