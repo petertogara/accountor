@@ -1,4 +1,4 @@
-# 🚀 Finnish Company Search Service (Accountor)
+# 🚀 Finnish Company Search Service
 
 A robust, secure, full-stack application for searching Finnish company details using the PRH Open API. The backend service is built with **Spring WebFlux** for reactive, non-blocking operations, and communicates securely via HTTPS. The frontend is a responsive **React** application that consumes the backend API, featuring clear component structure, input validation, and real-time data display.
 
@@ -17,7 +17,7 @@ A robust, secure, full-stack application for searching Finnish company details u
 - 🧙 **Mockito**
 - 🧙 **Testcontainers**
 - 🔬 **StepVerifier** (from Reactor Test)
-- 💡 **Prometheus, logback, httpexchanges enabled as part of our observability culture 
+- 💡 **Prometheus, logback, httpexchanges enabled as part of our observability culture** 
 
 ### Frontend (`web`)
 - ⚛️ **React 18**
