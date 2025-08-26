@@ -1,0 +1,18 @@
+/* web/src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ensure html, body, and the React root div span full width and height */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Crucial for consistent sizing */
+}
+
+/* Apply the Inter font globally */
+body {
+  font-family: 'Inter', sans-serif;
+}

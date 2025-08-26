@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: prh-service
+  profiles:
+    active: dev
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration
+      - org.springframework.boot.autoconfigure.security.reactive.ReactiveUserDetailsServiceAutoConfiguration
+
+server:
+  port: 8443
+  ssl:
+    key-store: file:/app/keystore.p12
+    key-store-password: changeit
+    key-store-type: PKCS12
+    key-alias: prh-ssl
+  http:
+    port: 8888
+
+resilience4j:
+  retry:
+    instances:
+      prhApi:
+        maxAttempts: 3
+        waitDuration: 2s
+        retryExceptions:
+          - com.accountor.prh.exception.ExternalApiException
+        ignoreExceptions:
+          - com.accountor.prh.exception.CompanyNotFoundException
+          - com.accountor.prh.exception.InvalidInputException
+          - com.accountor.prh.exception.MappingException
+
+  ratelimiter:
+    instances:
+      prhApi:
+        limitForPeriod: 100
+        limitRefreshPeriod: 1s
+        timeoutDuration: 500ms
+
+prh:
+  api:
+    base-url: https://avoindata.prh.fi/opendata-ytj-api/v3
+
+logging:
+  level:
+    reactor.netty.http.client: INFO
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'health,info,metrics,prometheus,loggers,env,beans, httpexchanges'
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: false
+  httpexchanges:
+    recording:
+      enabled: true
