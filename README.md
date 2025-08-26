@@ -1,3 +1,6 @@
+<img width="1772" height="728" alt="Screenshot 2025-08-26 at 20 22 05" src="https://github.com/user-attachments/assets/c507f7c6-02bf-4620-bebe-8759405e74d4" />
+
+
 # 🚀 Finnish Company Search Service
 
 A robust, secure, full-stack application for searching Finnish company details using the PRH Open API. The backend service is built with **Spring WebFlux** for reactive, non-blocking operations, and communicates securely via HTTPS. The frontend is a responsive **React** application that consumes the backend API, featuring clear component structure, input validation, and real-time data display.
