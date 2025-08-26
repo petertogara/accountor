@@ -124,10 +124,10 @@ accountor/
 
     This command will start the following containers:
 
-    | Container           | Description                                       | Port(s)        |
-        |---------------------|---------------------------------------------------|----------------|
-    | `prh_service_backend` | Spring Boot Backend Service with HTTPS & Auth     | `8888 (HTTPS)` |
-    | `react_frontend`    | React Frontend served by Nginx & API Proxy        | `80 (HTTP)`    |
+    | Container           | Description                                       | Port(s)          |
+    |---------------------|---------------------------------------------------|------------------|
+    | `prh_service_backend` | Spring Boot Backend Service with HTTPS & Auth   | `8888 (HTTPS)`   |
+    | `react_frontend`    | React Frontend served by Nginx & API Proxy        | `80 (HTTP)`      |
 
 ---
 
